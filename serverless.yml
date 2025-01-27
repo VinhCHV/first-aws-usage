@@ -1,0 +1,17 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: vinhhvinh
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: first-aws-prj
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: ap-southeast-1
+  
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
