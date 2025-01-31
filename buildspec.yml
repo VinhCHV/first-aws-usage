@@ -24,7 +24,7 @@ phases:
   build:
     commands:
       - echo "========= Deploying Serverless Application ========="
-      - serverless deploy --conceal --verbose
+      - serverless deploy --stage $ENVIROMENT --$REGION --conceal --verbose
       - echo "finished deployment"
   post_build:
     commands:
