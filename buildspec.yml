@@ -13,8 +13,11 @@ phases:
       - python -m venv .venv
       - source .venv/bin/activate
       - pip install -r requirements.txt
-      - npm install --silent -g serverless 
-      
+      - npm install --silent -g serverless
+      - echo "Installing jq for JSON processing..."
+      - yum install -y jq
+      - echo "Fetching Serverless Access Key from AWS Secrets Manager..."
+      - export SERVERLESS_ACCESS_KEY=$(aws secretsmanager get-secret-value --secret-id serverless/access_key --query SecretString --output text | jq -r)
 
   pre_build:
     commands:
@@ -24,9 +27,8 @@ phases:
   build:
     commands:
       - echo "========= Deploying Serverless Application ========="
-      - export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY
-      - serverless deploy --stage $ENVIRONMENT --region $AWS_REGION --key $SERVERLESS_ACCESS_KEY --verbose
-      - echo "finished deployment"
+      - serverless deploy --stage $ENVIRONMENT --region $AWS_REGION --verbose
+      - echo "========= Finished Deployment ========="
   post_build:
     commands:
       - echo "========= Deployment Complete ========="
