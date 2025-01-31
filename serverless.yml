@@ -15,3 +15,12 @@ functions:
       - httpApi:
           path: /
           method: get
+package:
+  exclude:
+    - venv/**
+    - .git/**
+    - .serverless/**
+    - tests/**
+    - docs/**
+    - node_modules/**
+    - __pycache__/**
