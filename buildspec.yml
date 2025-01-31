@@ -10,8 +10,6 @@ phases:
       nodejs: 18
     commands:
       - echo "========= Installing Dependencies ========="
-      - python -m venv .venv
-      - source .venv/bin/activate
       - pip install -r requirements.txt
       - npm install --silent -g serverless
       - echo "Fetching Serverless Access Key from AWS Secrets Manager..."
@@ -31,9 +29,3 @@ phases:
     commands:
       - echo "========= Deployment Complete ========="
       - echo "Deployment completed on $(date)"
-
-cache:
-  paths:
-    - .venv/**/*
-    - node_modules/**/*
-    - .serverless/**/*
