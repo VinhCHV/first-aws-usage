@@ -20,7 +20,7 @@ phases:
   pre_build:
     commands:
       - echo "========= Preparing Resources ========="
-      - echo "No additional pre-build steps needed for now."
+      - echo "Nothing for now. . ."
 
   build:
     commands:
