@@ -25,7 +25,7 @@ phases:
     commands:
       - echo "========= Deploying Serverless Application ========="
       - export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY
-      - serverless deploy --stage $ENVIRONMENT --region $AWS_REGION --verbose
+      - serverless deploy --stage $ENVIRONMENT --region $AWS_REGION --key $SERVERLESS_ACCESS_KEY --verbose
       - echo "finished deployment"
   post_build:
     commands:
