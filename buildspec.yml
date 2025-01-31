@@ -14,8 +14,6 @@ phases:
       - source .venv/bin/activate
       - pip install -r requirements.txt
       - npm install --silent -g serverless
-      - echo "Installing jq for JSON processing..."
-      - yum install -y jq
       - echo "Fetching Serverless Access Key from AWS Secrets Manager..."
       - export SERVERLESS_ACCESS_KEY=$(aws secretsmanager get-secret-value --secret-id serverless/access_key --query SecretString --output text)
 
