@@ -1,0 +1,38 @@
+version: 0.2
+
+env:
+  shell: bash
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+      nodejs: 18
+    commands:
+      - echo "========= Installing Dependencies ========="
+      - python -m venv .venv
+      - source .venv/bin/activate
+      - pip install -r requirements.txt
+      - npm install --silent -g serverless@3.39.0
+      
+
+  pre_build:
+    commands:
+      - echo "========= Preparing Resources ========="
+      - echo "No additional pre-build steps needed for now."
+
+  build:
+    commands:
+      - echo "========= Deploying Serverless Application ========="
+      - serverless deploy --conceal --verbose
+      - echo "finished deployment"
+  post_build:
+    commands:
+      - echo "========= Deployment Complete ========="
+      - echo "Deployment completed on $(date)"
+
+cache:
+  paths:
+    - .venv/**/*
+    - node_modules/**/*
+    - .serverless/**/*
