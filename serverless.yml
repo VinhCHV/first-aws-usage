@@ -9,11 +9,17 @@ provider:
   region: ap-southeast-1
   
 functions:
-  hello:
-    handler: handler.hello
+  start:
+    handler:  go_in.start_phase
     events:
       - httpApi:
-          path: /
+          path: /start
+          method: get
+  end:
+    handler:  get_out.end_phase
+    events:
+      - httpApi:
+          path: /end
           method: get
 package:
   exclude:

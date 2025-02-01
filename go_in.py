@@ -1,9 +1,9 @@
 import json
 
 
-def hello(event, context):
+def start_phase(event, context):
     body = {
-        "message": "Go Serverless v4.0! Your function executed successfully!",
+        "message": "Getting Started...",
     }
 
     response = {"statusCode": 200, "body": json.dumps(body)}
